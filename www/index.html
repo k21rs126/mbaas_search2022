@@ -40,7 +40,7 @@
         function searchFood() {
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .equalTo("type", 2)
+                .equalTo("type", "f")
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
@@ -51,22 +51,48 @@
         function searchDrink() {
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .equalTo("type", 1)
+                .equalTo("type", "d")
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
         }
 
-        function searchFeeGT() {
-            let fee = parseInt($("#fee").val(), 10);
-            let TestDataClass = ncmb.DataStore(db);
-            TestDataClass
-                .greaterThan("fee", fee)
-                .fetchAll()
-                .then(function(results) {
-                    showResults(results);
-                })
+        let sum = 0;
+        function mA(){
+            sum += 490;
+            let msg2 = "sum: " + sum + "yen";
+            $("#message2").html(msg2);
+        }
+        function mB(){
+            sum += 320;
+            msg2 = "sum: " + sum + "yen";
+            $("#message2").html(msg2);
+        }
+        function mC(){
+            sum += 290;
+            let msg2 = "sum: " + sum + "yen";
+            $("#message2").html(msg2);
+        }
+        function mD(){
+            sum += 480;
+            msg2 = "sum: " + sum + "yen";
+            $("#message2").html(msg2);
+        }
+        function mE(){
+            sum += 340;
+            let msg2 = "sum: " + sum + "yen";
+            $("#message2").html(msg2);
+        }
+        function mF(){
+            sum += 350;
+            msg2 = "sum: " + sum + "yen";
+            $("#message2").html(msg2);
+        }
+        function mG(){
+            sum += 500;
+            let msg2 = "sum: " + sum + "yen";
+            $("#message2").html(msg2);
         }
 
         function showResults(results) {
@@ -84,6 +110,7 @@
             msg += "</table>";
             $("#message").html(msg);
         }
+
     </script>
 </head>
 
@@ -100,10 +127,24 @@
         <br>
         <button class="btn" onclick="searchFood()">Food</button>
         <button class="btn" onclick="searchDrink()">Drink</button>
-        <br>
-        <button class="btn" onclick="searchFeeGT()">fee &gt</button>
     </div>
-    <div id="message">message area</div>
+
+
+<div id="message">message area</div>
+<div id="message2">message2 area</div>
+
+
+    <div id="button">
+        <button class="btn2" onclick="mA()">5Chickens</button>
+        <button class="btn2" onclick="mB()">CafeAuLait</button>
+        <button class="btn2" onclick="mC()">CreamMelonSoda</button>
+        <button class="btn2" onclick="mD()">CurryAndRice</button>
+        <button class="btn2" onclick="mE()">EggPorridge</button>
+        <button class="btn2" onclick="mF()">FrenchFries</button>
+        <button class="btn2" onclick="mG()">Pizza</button>
+    </div>
+
+    
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-/*一番上の題名*/
+/*題名*/
 body {
   background-color: white;
 }
@@ -6,6 +6,7 @@ h1 {
   background-color: yellow;
 }
 
+/*name:*/
 label {
   display: block;
   float: left;
@@ -13,14 +14,17 @@ label {
   width: 20%;
 }
 
+/*入力枠*/
 input {
   width: 65%;
 }
 
+/*ボタン内文字整列*/
 #button {
   text-align: center;
 }
 
+/*ボタン*/
 .btn {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -32,10 +36,22 @@ input {
   background-color: orange;
 }
 
+/*ボタン2*/
+.btn2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 12pt;
+  height: 4ex;
+  width: 10em;   /*ボタン横幅*/
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(35, 188, 248);
+}
+/*
 #message {
   border-style: solid;
   border-color: grey;
-}
+}*/
 
 table {
   border-collapse: collapse;
