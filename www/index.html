@@ -12,9 +12,10 @@
     <script>
         // NCMB アクセスの準備
         let ncmb = new NCMB(appKey, clientKey);
-        // 本アプリで使うクラスの指定。const は定数の宣言。変更できない変数と思えば良い。
+        // 本アプリで使うクラスの指定。const は定数の宣言。
         const db = "fee";
 
+        //すべて表示
         function fetchAll() {
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass.order("name", false).fetchAll()
@@ -23,6 +24,7 @@
                 })
         }
 
+        //名前検索
         function searchName() {
             let name = $("#name").val();
             let TestDataClass = ncmb.DataStore(db);
@@ -34,33 +36,33 @@
                 })
         }
 
-        function searchCostLT() {
-            let level = parseInt($("#cost").val());
+        //フードのみ表示
+        function searchFood() {
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .lessThan("cost", cost)
+                .equalTo("type", 2)
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
         }
 
-        function searchCost() {
-            let level = parseInt($("#cost").val());
+        //ドリンクのみ表示
+        function searchDrink() {
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .equalTo("cost", cost)
+                .equalTo("type", 1)
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
                 })
         }
 
-        function searchCostGT() {
-            let level = parseInt($("#cost").val(), 10);
+        function searchFeeGT() {
+            let fee = parseInt($("#fee").val(), 10);
             let TestDataClass = ncmb.DataStore(db);
             TestDataClass
-                .greaterThan("cost", cost)
+                .greaterThan("fee", fee)
                 .fetchAll()
                 .then(function(results) {
                     showResults(results);
@@ -69,14 +71,13 @@
 
         function showResults(results) {
             // テーブルのヘッダを生成
-            let msg = "<table><tr><th>　名前　</th><th>　原価　</th><th>　料金　</th><th>必要時間</th></tr>";
+            let msg = "<table><tr> <th>name</th> <th>fee</th> <th>type</th>";
             for (let i = 0; i < results.length; i++) {
                 // 各データを収めた表の列を生成
                 msg += "<tr>";
                 msg += "<td>" + results[i].name + "</td>";
-                msg += "<td class='num'>" + results[i].cost + "</td>";
-                msg += "<td class='num'>" + results[i].sellingfee + "</td>";
-                msg += "<td class='num'>" + results[i].time + "</td>";
+                msg += "<td class='num'>" + results[i].fee + "</td>";
+                msg += "<td class='num'>" + results[i].type + "</td>";
                 msg += "</tr>";
             }
             // テーブルのテイラを生成
@@ -87,22 +88,20 @@
 </head>
 
 <body>
-    <h1>料理と原価</h1>
+    <h1>menu order</h1>
     <div>
-        <label for="name">名前:</label>
-        <input id="name" type="text" placeholder="名前を入力してください">
+        <label for="name">name:</label>
+        <input id="name" type="text" placeholder="name here">
     </div>
-    <div>
-        <label for="cost">原価:</label>
-        <input id="cost" type="number" placeholder="原価を入力してください">
-    </div>
+    
     <div id="button">
-        <button class="btn" onclick="fetchAll()">すべて表示</button>
-        <button class="btn" onclick="searchName()">名前検索</button>
+        <button class="btn" onclick="fetchAll()">All</button>
+        <button class="btn" onclick="searchName()">NmSrch</button>
         <br>
-        <button class="btn" onclick="searchCostLT()">原価 (降順) &lt</button>
-        <button class="btn" onclick="searchCost()">原価</button>
-        <button class="btn" onclick="searchCostGT()">原価 (昇順) &gt</button>
+        <button class="btn" onclick="searchFood()">Food</button>
+        <button class="btn" onclick="searchDrink()">Drink</button>
+        <br>
+        <button class="btn" onclick="searchFeeGT()">fee &gt</button>
     </div>
     <div id="message">message area</div>
 </body>
